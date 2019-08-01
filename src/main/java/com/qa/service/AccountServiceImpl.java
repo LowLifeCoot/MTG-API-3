@@ -14,7 +14,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public String createAccount(String account) {
-		return this.repo.createAccount(account);
+		if (repo.checkUsername(account)) {
+			return this.repo.createAccount(account);
+		} else {
+			return "{\"checkName\": \"Taken\"}";
+		}
 	}
 
 	public String deleteAccount(int accountId) {
@@ -22,7 +26,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public String updateAccount(int accountId, String account) {
-		return this.repo.updateAccount(accountId, account);
+		if (repo.checkUsername(account)) {
+			return this.repo.updateAccount(accountId, account);
+		} else {
+			return "{\"checkName\": \"Taken\"}";
+		}
 	}
 
 	public String getAccount(String id) {
