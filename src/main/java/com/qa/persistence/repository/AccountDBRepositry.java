@@ -54,10 +54,6 @@ public class AccountDBRepositry implements AccountRepository {
 		// if id is same then replace data at database
 
 		Account current = this.em.find(Account.class, accountNumber);
-		Account toChange = this.json.getObjectForJSON(account, Account.class);
-		current.setName(toChange.getName());
-		current.setPassword(toChange.getPassword());
-
 		this.em.persist(current);
 		return SUCCESS + this.json.getJSONForObject(current);
 	}
@@ -83,7 +79,7 @@ public class AccountDBRepositry implements AccountRepository {
 	public boolean checkUsername(String account) {
 		Account user = this.json.getObjectForJSON(account, Account.class);
 		String username = user.getName();
-		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE name='" + username + "'",
+		TypedQuery<Account> query = this.em.createQuery("SELECT a FROM Account a WHERE a.name='" + username + "'",
 				Account.class);
 		if (query.getResultList().isEmpty()) {
 			return true;
