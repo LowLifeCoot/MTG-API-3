@@ -68,6 +68,7 @@ public class AccountDBRepositry implements AccountRepository {
 				"SELECT a FROM Account a WHERE name = '" + username + "' AND password = '" + password + "' ",
 				Account.class);
 		Account logAcc = null;
+
 		try {
 			logAcc = (Account) query.getSingleResult();
 		} catch (NoResultException nre) {
