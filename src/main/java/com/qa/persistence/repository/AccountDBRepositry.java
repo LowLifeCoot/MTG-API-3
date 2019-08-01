@@ -74,8 +74,9 @@ public class AccountDBRepositry implements AccountRepository {
 		try {
 			logAcc = (Account) query.getSingleResult();
 		} catch (NoResultException nre) {
-			createAccount(account);
-			logAcc = (Account) query.getSingleResult();
+			// createAccount(account);
+			// logAcc = (Account) query.getSingleResult();
+			return "Fail";
 		}
 		return this.json.getJSONForObject(logAcc.getId());
 	}
