@@ -38,6 +38,7 @@ public class AccountDBRepositry implements AccountRepository {
 	public String createAccount(String account) {
 		Account toCreate = this.json.getObjectForJSON(account, Account.class);
 		this.em.persist(toCreate);
+
 		return this.json.getJSONForObject(toCreate.getId());
 	}
 
@@ -74,9 +75,7 @@ public class AccountDBRepositry implements AccountRepository {
 		try {
 			logAcc = (Account) query.getSingleResult();
 		} catch (NoResultException nre) {
-			// createAccount(account);
-			// logAcc = (Account) query.getSingleResult();
-			return "Fail";
+			return "{\"message\": \"Fail\"}";
 		}
 		return this.json.getJSONForObject(logAcc.getId());
 	}
