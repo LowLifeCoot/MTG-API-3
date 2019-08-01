@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
 		if (repo.checkUsername(account)) {
 			return this.repo.updateAccount(accountId, account);
 		} else {
-			return "{\"checkName\": \"Taken\"}";
+			return account;
 		}
 	}
 
